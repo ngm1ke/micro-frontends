@@ -5,9 +5,7 @@ const RemoteHeader = React.lazy(() => import("react_remote_app/Header"));
 const RemoteButton = React.lazy(() => import("react_remote_app/Button"));
 
 const LoadingSpinner = () => (
-  <div className="flex justify-center p-4">
-    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-  </div>
+  <div className="p-4">Loading React remote…</div>
 );
 
 export const RemoteComponentWrapper = () => {

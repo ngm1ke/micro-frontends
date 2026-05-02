@@ -13,6 +13,11 @@ export default defineConfig({
           name: "react_remote_app",
           entry: "http://localhost:5001/remoteEntry.js",
         },
+        vue_remote_app: {
+          type: "module",
+          name: "vue_remote_app",
+          entry: "http://localhost:5002/remoteEntry.js",
+        },
       },
       shared: ["react", "react-dom"],
     }),

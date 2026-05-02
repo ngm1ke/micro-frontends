@@ -1,0 +1,10 @@
+{
+  "latestErrorEvent": {
+    "code": "TYPE-001",
+    "message": "Failed to generate type declaration. Execute the below cmd to reproduce and fix the error. #TYPE-001\nargs: {\"cmd\":\"/usr/local/bin/node /Users/hoangnguyen/Documents/projects/micro-frontends/vue-remote-app/node_modules/typescript/bin/tsc --project /Users/hoangnguyen/Documents/projects/micro-frontends/vue-remote-app/node_modules/.federation/tsconfig.5826b78372480c2d34509f11713b7c61.json\"}\nView the docs to see how to solve: https://module-federation.io/guide/troubleshooting/type#type-001",
+    "args": {
+      "cmd": "/usr/local/bin/node /Users/hoangnguyen/Documents/projects/micro-frontends/vue-remote-app/node_modules/typescript/bin/tsc --project /Users/hoangnguyen/Documents/projects/micro-frontends/vue-remote-app/node_modules/.federation/tsconfig.5826b78372480c2d34509f11713b7c61.json"
+    },
+    "timestamp": 1784913141320
+  }
+}
