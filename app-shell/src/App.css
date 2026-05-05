@@ -1,90 +1,106 @@
 .app-shell {
-  min-height: 100svh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: var(--bg-dark);
+  color: var(--text-primary);
 }
 
-.site-header,
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px clamp(24px, 5vw, 72px);
+  background: rgba(9, 10, 15, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+}
+
+.brand {
+  color: #fff;
+  text-decoration: none;
+}
+
+.brand-text { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.03em; }
+.site-nav { display: flex; align-items: center; gap: 8px; }
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.is-active { color: #fff; background: rgba(255, 255, 255, 0.04); }
+.cart-icon { font-size: 1.15rem; }
+.cart-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  place-items: center;
+  padding: 0 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--primary), #3b82f6);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.main-content { flex: 1; padding-bottom: 80px; }
+.catalog-section { max-width: 1400px; margin: 0 auto; padding: 0 clamp(24px, 5vw, 72px); }
+.catalog-title {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 750;
+}
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+
 .site-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px clamp(24px, 5vw, 72px);
+  padding: 24px clamp(24px, 5vw, 72px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(9, 10, 15, 0.5);
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
+.footer-brand { color: var(--text-secondary); font-weight: 700; }
 
-.site-header {
-  border-bottom: 1px solid var(--border);
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: blur(14px);
-  position: sticky;
-  top: 0;
-  z-index: 1;
+.loading-viewport { display: grid; min-height: 60vh; place-items: center; }
+.loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(139, 92, 246, 0.1);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s ease-in-out infinite;
 }
-
-.brand {
-  color: var(--text-h);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 17px;
-  font-weight: 750;
-  letter-spacing: -0.3px;
-  text-decoration: none;
-}
-
-.brand-mark {
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  color: white;
-  background: linear-gradient(135deg, #6d5dfc, #b94de8);
-  border-radius: 10px;
-  box-shadow: 0 7px 16px rgba(109, 93, 252, 0.28);
-  font-size: 11px;
-  letter-spacing: -0.5px;
-}
-
-.site-nav { display: flex; gap: 6px; }
-
-.nav-link {
-  color: var(--text);
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 650;
-  padding: 8px 12px;
-  text-decoration: none;
-  transition: background 160ms ease, color 160ms ease;
-}
-
-.nav-link:hover, .nav-link.is-active { background: var(--accent-bg); color: var(--accent); }
-
-.main-content { width: min(100% - 48px, 960px); margin: 0 auto; flex: 1; padding: clamp(56px, 10vw, 108px) 0 72px; }
-.page-intro { max-width: 660px; }
-.eyebrow { color: var(--accent); font-size: 13px; font-weight: 750; letter-spacing: 0.1em; margin-bottom: 14px; text-transform: uppercase; }
-.page-intro h1 { font-size: clamp(38px, 6vw, 66px); line-height: 1.02; letter-spacing: -0.06em; margin: 0 0 20px; }
-.page-description { color: var(--text); font-size: clamp(17px, 2vw, 20px); line-height: 1.55; max-width: 610px; }
-
-.route-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 56px; }
-.route-card { border: 1px solid var(--border); border-radius: 20px; color: var(--text); min-height: 210px; padding: 28px; position: relative; text-decoration: none; transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
-.route-card:hover { border-color: var(--accent-border); box-shadow: var(--shadow); transform: translateY(-4px); }
-.route-card-icon { align-items: center; background: var(--accent-bg); border-radius: 10px; color: var(--accent); display: inline-flex; font-size: 22px; font-weight: 700; height: 42px; justify-content: center; margin-bottom: 24px; width: 42px; }
-.vue-card .route-card-icon { background: rgba(66, 184, 131, 0.13); color: #299b67; font-size: 18px; }
-.route-card h2 { font-size: 21px; margin: 0 0 9px; }
-.route-card p { font-size: 15px; line-height: 1.5; }
-.route-card-link { bottom: 26px; color: var(--accent); font-size: 14px; font-weight: 700; left: 28px; position: absolute; }
-
-.remote-surface { border: 1px solid var(--border); border-radius: 20px; box-shadow: 0 14px 35px rgba(35, 25, 70, 0.06); margin-top: 48px; overflow: hidden; padding: 20px; }
-.remote-surface .p-4 { padding: 4px; }
-
-.site-footer { border-top: 1px solid var(--border); color: var(--text); font-size: 13px; }
-.footer-status { align-items: center; display: inline-flex; gap: 8px; }
-.footer-status i { background: #30ba78; border-radius: 50%; box-shadow: 0 0 0 4px rgba(48, 186, 120, 0.12); height: 7px; width: 7px; }
+.animate-fade-in { animation: fade-in 0.3s ease forwards; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 
 @media (max-width: 640px) {
-  .site-header, .site-footer { padding: 16px 24px; }
-  .site-footer { align-items: flex-start; flex-direction: column; gap: 8px; }
-  .main-content { padding-top: 52px; }
-  .route-grid { grid-template-columns: 1fr; margin-top: 38px; }
-  .nav-link { padding-inline: 8px; }
+  .site-header { flex-direction: column; gap: 16px; padding: 16px; }
+  .site-footer { flex-direction: column; gap: 12px; text-align: center; }
+  .catalog-section { padding-inline: 16px; }
 }

@@ -1,0 +1,16 @@
+{
+  "name": "micro-frontends-marketplace",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "app-shell",
+    "detail",
+    "cart",
+    "shared-ui"
+  ],
+  "scripts": {
+    "dev": "npx concurrently \"npm run dev -w app-shell\" \"npm run dev -w detail\" \"npm run dev -w cart\"",
+    "build": "npm run build -w detail && npm run build -w cart && npm run build -w app-shell",
+    "serve": "npx concurrently \"npm run serve -w app-shell\" \"npm run serve -w detail\" \"npm run serve -w cart\""
+  }
+}
