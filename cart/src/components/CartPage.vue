@@ -21,12 +21,14 @@ const incrementQty = (item: CartItem) => store.updateQuantity(item.product.id, i
 const decrementQty = (item: CartItem) => store.updateQuantity(item.product.id, item.quantity - 1);
 const removeItem = (productId: string) => store.removeFromCart(productId);
 
+const CHECKOUT_DURATION = 2200;
+
 const handleCheckout = () => {
   checkoutSuccess.value = true;
   setTimeout(() => {
     store.clearCart();
     checkoutSuccess.value = false;
-  }, 4000);
+  }, CHECKOUT_DURATION);
 };
 
 const formatPrice = (value: number) => value.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -36,14 +38,18 @@ const formatPrice = (value: number) => value.toLocaleString("en-US", { style: "c
   <div class="mx-auto max-w-6xl px-4 py-8 text-slate-100 md:px-8">
     <h2 class="mb-8 text-3xl font-extrabold tracking-tight text-white">Shopping cart</h2>
 
-    <div v-if="checkoutSuccess" class="fixed inset-0 z-50 grid place-items-center bg-slate-950/80 p-4 backdrop-blur-sm">
-      <div class="w-full max-w-md rounded-3xl border border-emerald-400/30 bg-slate-900 p-8 text-center shadow-2xl">
-        <div class="mx-auto grid h-14 w-14 place-items-center rounded-full bg-emerald-400/15 text-3xl text-emerald-300">✓</div>
-        <h3 class="mt-5 text-2xl font-bold text-white">Order placed!</h3>
-        <p class="mt-2 text-slate-400">Thank you for your purchase. We’re preparing your order now.</p>
-        <div class="mt-6 h-1 overflow-hidden rounded-full bg-white/10"><div class="h-full w-full origin-left animate-pulse bg-emerald-400"></div></div>
+    <Transition name="fade">
+      <div v-if="checkoutSuccess" class="fixed inset-0 z-50 grid place-items-center bg-slate-950/70 p-4 backdrop-blur-sm">
+        <div class="w-full max-w-xs rounded-2xl border border-white/10 bg-slate-900 px-6 py-6 text-center shadow-2xl">
+          <div class="mx-auto grid h-11 w-11 place-items-center rounded-full bg-emerald-400/15 text-xl text-emerald-300">✓</div>
+          <h3 class="mt-3 text-lg font-bold text-white">Order placed</h3>
+          <p class="mt-1 text-sm text-slate-400">We're preparing it now.</p>
+          <div class="mt-4 h-1 overflow-hidden rounded-full bg-white/10">
+            <div class="checkout-progress h-full rounded-full bg-emerald-400" :style="{ animationDuration: `${CHECKOUT_DURATION}ms` }"></div>
+          </div>
+        </div>
       </div>
-    </div>
+    </Transition>
 
     <section v-if="cartItems.length === 0 && !checkoutSuccess" class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-slate-900/80 to-slate-950/50 px-6 py-24 text-center shadow-2xl shadow-black/20">
       <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.08),transparent_70%)]"></div>
@@ -98,3 +104,27 @@ const formatPrice = (value: number) => value.toLocaleString("en-US", { style: "c
     </div>
   </div>
 </template>
+
+<style scoped>
+.checkout-progress {
+  width: 100%;
+  transform-origin: left;
+  animation-name: shrink-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+@keyframes shrink-progress {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

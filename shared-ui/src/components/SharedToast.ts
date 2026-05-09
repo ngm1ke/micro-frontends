@@ -47,7 +47,7 @@ export class SharedToast extends HTMLElement {
 
         .toast {
           position: fixed;
-          top: 24px;
+          bottom: 24px;
           right: 24px;
           display: flex;
           align-items: center;
