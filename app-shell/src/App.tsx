@@ -247,7 +247,17 @@ function AppShell() {
       </main>
 
       <footer className="site-footer">
-        <span className="footer-brand">© 2026 Footer.</span>
+        <div className="footer-inner">
+          <div className="footer-section">
+            
+            <span className="footer-copy">© 2026 Marketplace. All rights reserved.</span>
+          </div>
+          <nav className="footer-links">
+            <a href="#" className="footer-link">About</a>
+            <a href="#" className="footer-link">Privacy</a>
+            <a href="#" className="footer-link">Terms</a>
+          </nav>
+        </div>
       </footer>
     </div>
   );
